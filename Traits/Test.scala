@@ -13,6 +13,11 @@ object Test {
 
     println(for(i <- 0 to 10) yield 10-i)
 
+
   }
 
+
+  for(i<- (1 to 10).reverse){
+    print("a "+ i)
+  }
 }

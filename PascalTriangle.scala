@@ -1,55 +1,49 @@
 object PascalTriangle {
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]) {
+    val input: Int = scala.io.StdIn.readInt()
+    var array = Array.fill(input + 5)(0)
+    var temp_array = Array.fill(input + 5)(0)
+    array(3) = 1
     var i = 1
-    var n:Int=5
-    var m=0
-    var a=Array(0,0,0,1,0,0,0,0,0,0)
-    var b=Array(0,0,0,0,0,0,0,0,0,0)
-    demo
-    def demo {
-      if(n>m){
-        m+=1
-//        calvalue(a)
-        printspace(n-m)
-        printstar(m)
+    var m = 0
+    printSpace(input)
+    println(array(3))
+    printPascal
+    def printPascal {
+      if (input > m) {
+        m += 1
+        calArray(array)
+        printSpace(input - m)
+        printNumber(m)
       }
     }
 
-    def printstar(n: Int){
-      if(i<=n+1){
-        b(i+2)=a(i+1)+a(i+2)
-        println(i)
-        println("c("+(i+2)+")"+b(i+2))
-//        print(a(i+2)+" ")
-        i+=1
-        printstar(n)
-      }
-      else
-      {
-        a=b
+    def printNumber(n: Int) {
+      if (i <= n + 1) {
+        print(array(i + 2) + " ")
+        i += 1
+        printNumber(n)
+      } else {
         println()
-        i=1
-        demo
+        i = 1
+        printPascal
       }
     }
 
-    def printspace(n: Int): Unit ={
-      for(i<-0 to n){
+    def printSpace(n: Int) {
+      for (i <- 0 to n) {
         print(" ")
       }
     }
 
-//    def calvalue(a: Array[Int]): Unit ={
-//      for(i<- 1 to 8){
-//        b(i)=a(i-1)+a(i)
-////        println(b(i))
-//      }
-////      println(b)
-//      for(i<- 1 to 8){
-//        a(i)=b(i)
-//      }
-////      println(a)
-//    }
+    def calArray(arr: Array[Int]) {
+      for (i <- 1 to input + 3) {
+        temp_array(i) = arr(i) + arr(i - 1)
+      }
+      for (i <- 1 to input + 3) {
+        array(i) = temp_array(i)
+      }
+    }
   }
 }
